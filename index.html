@@ -9,13 +9,15 @@
       <h1>Convert CSS string to React style</h1>
     </div>
     <div style="display: flex; justify-content: space-around;">
-      <form onsubmit="return doit();">
+      <div style="display: flex; flex-direction: column">
         <textarea id="inp" style="width: 400px; height: 200px;" placeholder="Input your CSS here"></textarea>
-        <br/>
-        <button>Submit</button>
-      </form>
+        <button onclick="convert()">Convert</button>
+      </div>
 
-      <textarea id="out" style="width: 400px; height: 200px;"></textarea>
+      <div style="display: flex; flex-direction: column">
+        <textarea id="out" style="width: 400px; height: 200px;"></textarea>
+        <button onclick="copyToClipboard('out')">Copy</button>
+      </div>
     </div>
     <div style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
       <h2>Examples:</h2>
@@ -27,7 +29,20 @@
 </html>
 
 <script type="text/javascript">
-  function doit() {
+  const copyToClipboard = id => {
+    const str = document.getElementById(id).value;
+    const el = document.createElement('textarea');
+    el.value = str;
+    el.setAttribute('readonly', '');
+    el.style.position = 'absolute';
+    el.style.left = '-9999px';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+  };
+
+  const convert = () => {
     let inp = document.getElementById('inp').value;
     let ret = '';
     let stylePrefix = inp.startsWith('style') ?  'style = ' : '';
