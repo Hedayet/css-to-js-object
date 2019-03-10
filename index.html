@@ -3,24 +3,27 @@
   <head>
     <meta charset="utf-8">
   </head>
-  <div style="display: flex; justify-content: center">
-    <h1>Convert CSS to javascript object</h1>
-  </div>
-  <div style="display: flex; justify-content: space-around;">
-    <form onsubmit="return doit();">
-      <textarea id="inp" style="width: 400px; height: 200px;" placeholder="Input your CSS here"></textarea>
-      <br/>
-      <button>Submit</button>
-    </form>
+  <body>
+    <div style="display: flex; justify-content: center">
+        <a href="https://github.com/Hedayet/css-to-js-object/"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_darkblue_121621.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+      <h1>Convert CSS to javascript object</h1>
+    </div>
+    <div style="display: flex; justify-content: space-around;">
+      <form onsubmit="return doit();">
+        <textarea id="inp" style="width: 400px; height: 200px;" placeholder="Input your CSS here"></textarea>
+        <br/>
+        <button>Submit</button>
+      </form>
 
-    <textarea id="out" style="width: 400px; height: 200px;"></textarea>
-  </div>
-  <div style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
-    <h2>Examples</h2>
-    <pre>style= "display: flex;justify-content: center; text-align: center"</pre> converts to <pre>style = {{ display: "flex", justifyContent: "center", textAlign: "center" }}</pre>
-    <br/>
-    <pre>display: flex;justify-content: center; text-align: center;</pre> converts to <pre>{{ display: "flex", justifyContent: "center", textAlign: "center" }}</pre>
-  </div>
+      <textarea id="out" style="width: 400px; height: 200px;"></textarea>
+    </div>
+    <div style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
+      <h2>Examples:</h2>
+      <pre>style= "display: flex;justify-content: center; text-align: center"</pre> converts to <pre>style = {{ display: "flex", justifyContent: "center", textAlign: "center" }}</pre>
+      <br/>
+      <pre>display: flex;justify-content: center; text-align: center;</pre> converts to <pre>{{ display: "flex", justifyContent: "center", textAlign: "center" }}</pre>
+    </div>
+  </body>
 </html>
 
 <script type="text/javascript">
