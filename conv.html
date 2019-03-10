@@ -1,0 +1,54 @@
+<html>
+  <div style="display: flex; justify-content: space-around;">
+    <form onsubmit="return doit();">
+      <textarea id="inp" style="width: 400px; height: 200px;"></textarea>
+      <br/>
+      <button>Submit</button>
+    </form>
+
+    <textarea id="out" style="width: 400px; height: 200px;"></textarea>
+  </div>
+</html>
+
+<script type="text/javascript">
+  function doit() {
+    let inp = document.getElementById('inp').value;
+    let ret = '';
+    let stylePrefix = inp.startsWith('style') ?  'style = ' : '';
+    for(i = 0; i < inp.length; i++) {
+      if(!i && inp[i] == '"' || (!ret && (inp[i] == ' ' || inp[i] == '"'))) {
+        continue;
+      }
+      if(inp[i] == "=" ) {
+        ret = '';
+        continue;
+      }
+      if(inp[i] == ';') {
+        ret += '",';
+        continue;
+      }
+
+      if(inp[i] == '-') {
+        ret += inp[i+1].toUpperCase();
+        i += 1;
+        continue;
+      }
+
+      if(i > 2 && inp[i-2] == ':') {
+        ret += '"';
+      }
+      ret += inp[i];
+    }
+
+    if(ret.endsWith(',"')) {
+      ret = ret.substr(0, ret.length-1);
+    }
+
+    while(ret.endsWith(',')) {
+      ret = ret.substr(0, ret.length-1);
+    }
+
+    document.getElementById('out').value = stylePrefix + "{{ " + ret + " }}";
+    return false;
+  }
+</script>
