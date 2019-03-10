@@ -1,12 +1,25 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <div style="display: flex; justify-content: center">
+    <h1>Convert CSS to javascript object</h1>
+  </div>
   <div style="display: flex; justify-content: space-around;">
     <form onsubmit="return doit();">
-      <textarea id="inp" style="width: 400px; height: 200px;"></textarea>
+      <textarea id="inp" style="width: 400px; height: 200px;" placeholder="Input your CSS here"></textarea>
       <br/>
       <button>Submit</button>
     </form>
 
     <textarea id="out" style="width: 400px; height: 200px;"></textarea>
+  </div>
+  <div style="display: flex; flex-direction: column; justify-content: center; align-content: center;">
+    <h2>Examples</h2>
+    <pre>style= "display: flex;justify-content: center; text-align: center"</pre> converts to <pre>style = {{ display: "flex", justifyContent: "center", textAlign: "center" }}</pre>
+    <br/>
+    <pre>display: flex;justify-content: center; text-align: center;</pre> converts to <pre>{{ display: "flex", justifyContent: "center", textAlign: "center" }}</pre>
   </div>
 </html>
 
@@ -16,7 +29,7 @@
     let ret = '';
     let stylePrefix = inp.startsWith('style') ?  'style = ' : '';
     for(i = 0; i < inp.length; i++) {
-      if(!i && inp[i] == '"' || (!ret && (inp[i] == ' ' || inp[i] == '"'))) {
+      if(inp[i] == '"' || inp[i] == ' ') {
         continue;
       }
       if(inp[i] == "=" ) {
@@ -24,7 +37,7 @@
         continue;
       }
       if(inp[i] == ';') {
-        ret += '",';
+        ret += '", ';
         continue;
       }
 
@@ -35,10 +48,11 @@
       }
 
       if(i > 2 && inp[i-2] == ':') {
-        ret += '"';
+        ret += ' "';
       }
       ret += inp[i];
     }
+    ret = ret.trim();
 
     if(ret.endsWith(',"')) {
       ret = ret.substr(0, ret.length-1);
@@ -46,6 +60,10 @@
 
     while(ret.endsWith(',')) {
       ret = ret.substr(0, ret.length-1);
+    }
+
+    if(ret[ret.length-1] != '"') {
+      ret += '"';
     }
 
     document.getElementById('out').value = stylePrefix + "{{ " + ret + " }}";
