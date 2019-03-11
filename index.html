@@ -2,21 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./assets/style.css">
+    <title>Convert CSS string to React style Object</title>
   </head>
   <body>
-    <div style="display: flex; justify-content: center">
+    <div class="git_link">
         <a href="https://github.com/Hedayet/css-to-js-object/"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_darkblue_121621.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
-      <h1>Convert CSS string to React style</h1>
+    </div>
+    <div class="root">
+        <h1>Convert CSS string to React style Object</h1>
     </div>
     <div style="display: flex; justify-content: space-around;">
       <div style="display: flex; flex-direction: column">
         <textarea id="inp" style="width: 400px; height: 200px;" placeholder="Input your CSS here"></textarea>
-        <button onclick="convert()">Convert</button>
+        <button class="button" onclick="convert()">Convert</button>
       </div>
 
       <div style="display: flex; flex-direction: column">
         <textarea id="out" style="width: 400px; height: 200px;"></textarea>
-        <button onclick="copyToClipboard('out')">Copy</button>
+        <button class="button" onclick="copyToClipboard('out')">Copy</button>
       </div>
     </div>
     <div style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
@@ -26,67 +30,5 @@
       <pre>display: flex;justify-content: center; text-align: center;</pre> converts to <pre>{{ display: "flex", justifyContent: "center", textAlign: "center" }}</pre>
     </div>
   </body>
+  <script type="text/javascript" src="./assets/script.js"></script>
 </html>
-
-<script type="text/javascript">
-  const copyToClipboard = id => {
-    const str = document.getElementById(id).value;
-    const el = document.createElement('textarea');
-    el.value = str;
-    el.setAttribute('readonly', '');
-    el.style.position = 'absolute';
-    el.style.left = '-9999px';
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
-  };
-
-  const convert = () => {
-    let inp = document.getElementById('inp').value;
-    inp = inp.replace(/^\s+|\s+$/g, '');
-    const re = /(style\ *=\ *)?\"*\'*([^'"]*)/;
-    const elems = re.exec(inp);
-    let stylePrefix = elems[1] ?  'style = ' : '';
-    const attrs = conquere(elems[2]);
-    let rets = [];
-    for(let k in attrs) {
-      rets.push(dashedToCamelCase(k) + ': \"' + attrs[k] + '\"');
-    }
-
-    document.getElementById('out').value = stylePrefix + "{{ " + rets.join(', ') + " }}";
-    return false;
-  }
-
-  const conquere = (styleString) => {
-    let styles = {};
-    if(!styleString) {
-      return styles;
-    }
-    const attrs = styleString.split(';');
-    for(i in attrs) {
-      if (attrs.hasOwnProperty(i)) {
-        let attr = attrs[i];
-        if(!attr) continue;
-        const lst = attr.split(':');
-        styles[lst[0].trim()] = lst[1].trim();
-      }
-    }
-    return styles;
-  }
-
-  const dashedToCamelCase = (str) => {
-    let ret = '';
-    for(let i = 0; i < str.length; i++) {
-      if(str[i] == '-') {
-        if(i < str.length-1) {
-          ret += str[i+1].toUpperCase();
-          i ++;
-        }
-			  continue;
-      }
-		  ret += str[i];
-    }
-	return ret;
-}
-</script>
