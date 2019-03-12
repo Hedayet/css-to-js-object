@@ -3,10 +3,12 @@
     justify-content: center;
     min-height: 200px;
 }
+
 .git_link {
     position: absolute;
     left: 10px;
 }
+
 .button {
   background-color: #4CAF50;
   border: none;
@@ -20,4 +22,12 @@
   cursor: pointer;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
+}
+
+.example {
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  text-align: center;
+  padding: 1rem;
 }
