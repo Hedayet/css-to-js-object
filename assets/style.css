@@ -1,12 +1,22 @@
 .root {
-    display: flex;
-    justify-content: center;
-    min-height: 200px;
+  display: flex;
+  justify-content: center;
+  min-height: 200px;
 }
 
-.git_link {
-    position: absolute;
-    left: 10px;
+.git-link {
+  position: absolute;
+  left: 10px;
+}
+
+.text-area-view {
+  display: flex; 
+  justify-content: space-around;
+}
+
+.text-area {
+  width: 400px; 
+  height: 200px;
 }
 
 .button {
@@ -30,4 +40,20 @@
   justify-content: center; 
   text-align: center;
   padding: 1rem;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-size: 1rem;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+  font-size: 1rem;
+}
+
+:-ms-input-placeholder { /* IE 10+ */
+  font-size: 1rem;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  font-size: 1rem;
 }

@@ -3,26 +3,31 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="./assets/style.css">
-    <title>Convert CSS string to React style Object</title>
+    <title>Convert CSS string to React Style Object</title>
   </head>
+
   <body>
-    <div class="git_link">
+
+    <div class="git-link">
         <a href="https://github.com/Hedayet/css-to-js-object/"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_darkblue_121621.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
     </div>
+
     <div class="root">
-        <h1>Convert CSS string to React style Object</h1>
+        <h1>CSS string to React Style Object</h1>
     </div>
-    <div style="display: flex; justify-content: space-around;">
+
+    <div class="text-area-view">
       <div style="display: flex; flex-direction: column">
-        <textarea id="inp" style="width: 400px; height: 200px;" placeholder="Input your CSS here"></textarea>
+        <textarea id="inp" class="text-area" placeholder="Input your CSS here"></textarea>
         <button class="button" onclick="convert()">Convert</button>
       </div>
 
       <div style="display: flex; flex-direction: column">
-        <textarea id="out" style="width: 400px; height: 200px;"></textarea>
+        <textarea id="out" class="text-area"></textarea>
         <button class="button" onclick="copyToClipboard('out')">Copy</button>
       </div>
     </div>
+
     <div class="example">
       <h2>Examples:</h2>
       <pre>style = "display: flex;justify-content: center; text-align: center"</pre> converts to <pre>style = {{ display: "flex", justifyContent: "center", textAlign: "center" }}</pre>
@@ -30,6 +35,9 @@
       <span>Or</span>
       <pre>display: flex;justify-content: center; text-align: center;</pre> converts to <pre>{{ display: "flex", justifyContent: "center", textAlign: "center" }}</pre>
     </div>
+
   </body>
+
   <script type="text/javascript" src="./assets/script.js"></script>
+
 </html>
