@@ -28,7 +28,7 @@ const convert = () => {
   return false
 }
 
-const conquere = styleString => {
+const conquer = styleString => {
   let styles = {}
   if (!styleString) {
     return styles
@@ -49,8 +49,8 @@ const dashedToCamelCase = str => {
   let ret = ''
   for (let i = 0; i < str.length; i++) {
     if (str[i] == '-') {
-      if (i < str.length - 1) {
-        ret += str[i + 1].toUpperCase()
+      if (i < str.length-1) {
+        ret += str[i+1].toUpperCase()
         i++
       }
       continue
@@ -59,3 +59,4 @@ const dashedToCamelCase = str => {
   }
   return ret
 }
+
