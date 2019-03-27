@@ -47,8 +47,8 @@
     inp = inp.replace(/^\s+|\s+$/g, '');
     const re = /(style\ *=\ *)?\"*\'*([^'"]*)/;
     const elems = re.exec(inp);
-    let stylePrefix = elems[1] ?  'style = ' : '';
-    const attrs = conquere(elems[2]);
+    let stylePrefix = elems[1] ?  'style=' : '';
+    const attrs = conquer(elems[2]);
     let rets = [];
     for(let k in attrs) {
       rets.push(dashedToCamelCase(k) + ': \"' + attrs[k] + '\"');
@@ -58,7 +58,7 @@
     return false;
   }
 
-  const conquere = (styleString) => {
+  const conquer = (styleString) => {
     let styles = {};
     if(!styleString) {
       return styles;
