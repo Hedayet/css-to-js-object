@@ -17,7 +17,7 @@ const convert = () => {
   const re = /(style\ *=\ *)?\"*\'*([^'"]*)/
   const elems = re.exec(inp)
   let stylePrefix = elems[1] ? 'style=' : ''
-  const attrs = conquere(elems[2])
+  const attrs = conquer(elems[2])
   let rets = []
   for (let k in attrs) {
     rets.push(dashedToCamelCase(k) + ': "' + attrs[k] + '"')
